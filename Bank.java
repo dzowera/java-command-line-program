@@ -1,10 +1,14 @@
 import java.io.*;
 import java.util.*;
 
+// This is my Bank class.
+// It manages all accounts using a HashMap.
+// It also handles saving/loading accounts to a file.
 public class Bank {
     private HashMap<Integer, Account> accounts = new HashMap<>();
     private final String FILE_NAME = "accounts.txt";
 
+    // Add account but reject duplicates
     public void addAccount(Account account) {
         if (accounts.containsKey(account.getAccountNumber())) {
             System.out.println("Account number already exists. Choose a different number.");
@@ -14,10 +18,12 @@ public class Bank {
         }
     }
 
+    // Find account by number
     public Account getAccount(int accountNumber) {
         return accounts.get(accountNumber);
     }
 
+    // Transfer money between accounts
     public void transfer(int fromAcc, int toAcc, double amount) {
         Account from = accounts.get(fromAcc);
         Account to = accounts.get(toAcc);
@@ -34,12 +40,14 @@ public class Bank {
         }
     }
 
+    // List all accounts
     public void listAccounts() {
         for (Account acc : accounts.values()) {
             System.out.println(acc);
         }
     }
 
+    // Save accounts to file
     public void saveAccounts() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Account acc : accounts.values()) {
@@ -51,6 +59,7 @@ public class Bank {
         }
     }
 
+    // Load accounts from file
     public void loadAccounts() {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;

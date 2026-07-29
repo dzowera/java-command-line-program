@@ -1,3 +1,5 @@
+// This is my CheckingAccount class.
+// It extends Account and allows overdraft withdrawals.
 public class CheckingAccount extends Account {
     private double overdraftLimit;
 
@@ -6,6 +8,7 @@ public class CheckingAccount extends Account {
         this.overdraftLimit = overdraftLimit;
     }
 
+    // I override withdraw to allow overdraft
     @Override
     public void withdraw(double amount) {
         if (amount > 0 && balance + overdraftLimit >= amount) {
